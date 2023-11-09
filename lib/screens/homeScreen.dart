@@ -19,7 +19,10 @@ class HomeScreen extends StatelessWidget {
       child: UserFormWidget(
         onSaveEquipos: (EquiposJson) async {
 
-        await UserSheetsApi.insert([EquiposJson.toJson()]);
+        final id = await UserSheetsApi.getRowCount() + 1;
+        final newEquiposJson = EquiposJson.copy( id: id);
+
+        await UserSheetsApi.insert([newEquiposJson.toJson()]);
       },
       )
     )

@@ -55,6 +55,21 @@ class UserSheetsApi {
       
     }
 
+
+
+  ///Servira para definir el ID
+  static Future<int> getRowCount() async {
+    if(_userSheet == null) return 0;
+
+    final lastRow = await _userSheet!.values.lastRow();
+    return lastRow == null ? 0 : int.tryParse(lastRow.first) ?? 0;
+
+  }
+
+
+
+
+  ///Funcion de insertar
   static Future insert (List<Map<String, dynamic>> rowList) async {
     if( _userSheet == null ) return;
 
